@@ -1,0 +1,32 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-6">
+        <div class="flex items-center">
+          <h1 class="text-3xl font-bold text-gray-900">{{ title }}</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <span class="text-sm text-gray-500">Sistema de Consultas Médicas</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div class="px-4 py-6 sm:px-0">
+      <!-- Formulário de Cadastro -->
+      <div class="mb-8">
+        <app-consulta-form (consultaCadastrada)="onConsultaCadastrada()"></app-consulta-form>
+      </div>
+
+      <!-- Lista de Consultas -->
+      <div>
+        <app-consulta-list #consultaList></app-consulta-list>
+      </div>
+    </div>
+  </main>
+</div>
+
+<router-outlet />

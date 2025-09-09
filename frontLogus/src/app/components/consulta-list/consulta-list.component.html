@@ -1,0 +1,107 @@
+<div class="bg-white shadow rounded-lg p-6">
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h2 class="text-2xl font-bold text-gray-900">Consultas Agendadas</h2>
+      <div *ngIf="filtroData" class="mt-1">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+          Filtrado por: {{ formatarDataFiltro(filtroData) }}
+        </span>
+      </div>
+    </div>
+    
+    <!-- Filtro por Data -->
+    <div class="flex items-center space-x-4">
+      <label for="filtroData" class="text-sm font-medium text-gray-700">
+        Filtrar por data:
+      </label>
+      <input
+        type="date"
+        id="filtroData"
+        [(ngModel)]="filtroData"
+        (ngModelChange)="onFiltroChange()"
+        class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      />
+      <button
+        (click)="limparFiltro()"
+        [disabled]="!filtroData"
+        class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 disabled:bg-gray-50 disabled:text-gray-400 rounded-md transition duration-200"
+      >
+        Limpar Filtro
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="flex justify-center items-center py-8">
+    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+    <span class="ml-2 text-gray-600">Carregando consultas...</span>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md mb-4">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Consultas List -->
+  <div *ngIf="!isLoading" class="space-y-4">
+    <!-- Empty State -->
+    <div *ngIf="consultasFiltradas.length === 0" class="text-center py-8">
+      <div class="text-gray-500">
+        <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+        </svg>
+        <p class="text-lg font-medium text-gray-900 mb-2">Nenhuma consulta encontrada</p>
+        <p class="text-gray-500">
+          {{ filtroData ? 'Não há consultas para a data selecionada.' : 'Ainda não há consultas agendadas.' }}
+        </p>
+      </div>
+    </div>
+
+  <!-- Consultas List -->
+  <div *ngIf="consultasFiltradas.length > 0" class="space-y-4">
+  <div *ngFor="let consulta of consultasFiltradas" class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition duration-200">
+      <div class="flex justify-between items-start">
+        <div class="flex-1">
+          <div class="flex items-center space-x-4 mb-2">
+            <h3 class="text-lg font-semibold text-gray-900">{{ consulta.nomePaciente }}</h3>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+              Consultório {{ consulta.nroConsultorio }}
+            </span>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+            <div>
+              <span class="font-medium">Médico:</span>
+              <span class="ml-2">{{ consulta.nomeMedico }}</span>
+            </div>
+            <div>
+              <span class="font-medium">CRM:</span>
+              <span class="ml-2">{{ consulta.crmMedico }}</span>
+            </div>
+            <div>
+              <span class="font-medium">Data:</span>
+              <span class="ml-2">{{ formatarData(consulta.dataHora) }}</span>
+            </div>
+            <div>
+              <span class="font-medium">Horário:</span>
+              <span class="ml-2">{{ formatarHora(consulta.dataHora) }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-right text-sm text-gray-500">
+          <div class="font-medium">{{ formatarDataHora(consulta.dataHora) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total de Consultas -->
+  <div *ngIf="!isLoading && consultasFiltradas.length > 0" class="mt-6 pt-4 border-t border-gray-200">
+    <p class="text-sm text-gray-600">
+      <span class="font-medium">{{ consultasFiltradas.length }}</span>
+      {{ consultasFiltradas.length === 1 ? 'consulta encontrada' : 'consultas encontradas' }}
+      <span *ngIf="filtroData"> para {{ formatarData(filtroData) }}</span>
+    </p>
+  </div>
+</div>

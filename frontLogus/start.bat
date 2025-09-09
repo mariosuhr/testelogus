@@ -1,0 +1,3 @@
+@echo off
+echo Iniciando o servidor de desenvolvimento...
+ng serve --open

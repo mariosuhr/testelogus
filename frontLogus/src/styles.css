@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Snackbar Styles */
+.success-snackbar {
+  background-color: #10b981 !important;
+  color: white !important;
+}
+
+.error-snackbar {
+  background-color: #ef4444 !important;
+  color: white !important;
+}
+
+.info-snackbar {
+  background-color: #3b82f6 !important;
+  color: white !important;
+}
+
+.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: transparent !important;
+}
