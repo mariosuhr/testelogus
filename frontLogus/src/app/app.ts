@@ -10,7 +10,7 @@ import { ConsultaFormComponent } from './components/consulta-form/consulta-form.
   styleUrl: './app.css'
 })
 export class App {
-  title = 'Sistema de Consultas Médicas';
+  title = 'Medlogus';
   
   @ViewChild('consultaList') consultaList!: ConsultaListComponent;
 

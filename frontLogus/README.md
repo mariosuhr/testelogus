@@ -1,15 +1,15 @@
-# Sistema de Consultas Médicas - Frontend
+# Medlogus - Frontend
 
-Este é o frontend do sistema de consultas médicas desenvolvido em Angular com Tailwind CSS.
+Este é o frontend do sistema Medlogus desenvolvido em Angular com Tailwind CSS.
 
 ## Funcionalidades
 
-- ✅ Cadastro de consultas médicas
-- ✅ Listagem de consultas ordenadas por data/hora
-- ✅ Filtro de consultas por data específica
-- ✅ Validação de formulários
-- ✅ Interface responsiva com Tailwind CSS
-- ✅ Integração com API Java Spring Boot
+- Cadastro de consultas médicas
+- Listagem de consultas ordenadas por data/hora
+- Filtro de consultas por data específica
+- Validação de formulários
+- Interface responsiva com Tailwind CSS
+- Integração com API Java Spring Boot
 
 ## Tecnologias Utilizadas
 
